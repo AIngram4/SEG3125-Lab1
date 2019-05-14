@@ -1,0 +1,41 @@
+body {
+	font-family: 'Roboto', sans-serif;
+	background: #ede8e5;
+}
+
+.restaurant_button {
+	border-radius: 10px;
+	width: 80%;
+	height: 80px;
+	border-color: black;
+	background: white;
+	border-width: 1px;
+	margin-bottom: 15px;
+	transition: transform 0.3s;
+}
+
+.restaurant_button:hover {
+	transform: translateY(-5px);
+}
+
+.button_text {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.rounded_square {
+	display: inline-flex;
+	vertical-align: middle;
+	justify-content: center;
+	align-items: center;
+	height: 30px;
+	width: 25px;
+	border-radius: 10px;
+	background: #eb0c00;
+	color: white;
+	font-size: 10px;
+}
+
+.buttons {
+	text-align: center;
+}
