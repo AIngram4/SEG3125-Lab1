@@ -1,15 +1,11 @@
-.clearfix::after {
-	content: "";
-	display: table;
-	clear: both;
-}
-
 .buttons {
 	position: relative;
 	width: 600px;
+	height: auto;
 	top: 40px;
 	left: 50%;
 	transform: translateX(-50%);
+	margin-bottom: 50px;
 }
 
 .restaurant_button {
@@ -24,29 +20,23 @@
 }
 
 .restaurant_review, .restaurant_name, .restaurant_address, .restaurant_style {
-	display: inline-block;
 	position: absolute;
 	line-height: 100px;
 	font-size: 16px;
 }
 
 .restaurant_img, .restaurant_star {
-	display: inline-block;
 	position: absolute;
 	top: 50%;
 	transform: translateY(-50%);
 }
 
-.restaurant_style {
-
-}
-
 .restaurant_star {
-	right: 45px;
+	right: 60px;
 }
 
 .restaurant_review {
-	right: 10px;
+	right: 30px;
 	font-weight: bold;
 }
 
@@ -91,11 +81,11 @@
 }
 
 .left .vertical_line {
-	left: 300px;
+	left: 280px;
 }
 
 .right .vertical_line {
-	right: 100px;
+	right: 120px;
 }
 
 .vertical_line {
@@ -108,21 +98,20 @@
 }
 
 .restaurant_price {
-	position: absolute;
-	line-height: 100px;
-	right: 175px;
+	right: 196px;
 	top: 20px;
-	float: right;
 	color: #aaaaaa;
 	font-size: 12px;
 }
 
 .restaurant_style {
-	position: absolute;
-	line-height: 100px;
-	right: 180px;
-	float: right;
+	right: 200px;
 	font-size: 16px;
+}
+
+.restaurant_style, .restaurant_price {
+	position: absolute;
+	line-height: 100px;.
 }
 
 button:focus {
