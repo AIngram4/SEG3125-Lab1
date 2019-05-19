@@ -10,39 +10,78 @@ body {
 	padding: 70px;
 	text-align: center;
 }
-.searchbar {
+
+.search-containers{
+	width: 40%;
+	display: block;
+	margin: 0 auto;
+
+}
+
+input#search-bar-restaurant {\
+	float: left;
+	margin: 0 auto;
 	width: 100%;
-	position: relative;
-	display: flex;
-}
-.wrap{
-	width: 30%;
-	position: absolute;
-	top: 25%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-}
-.searchterm {
-	width: 100%
-	border: 3px solid #00B4CC;
-	border-right: none;
-	padding: 5px;
-	height: 20px;
-	border-radius: 5px 0 0 5px;
+	height: 45px;
+	padding: 0 20px;
+	font-size: 1rem;
+	border: 1px solid #AE5D5D;
 	outline: none;
-	color: #9DBFAF;
+	border-radius: 8px;
+ }
+
+.search-icon-restaurant {
+	position: relative;
+	float: right;
+	width: 65px;
+	height: 65px;
+	top: -55px;
+	right: -52px;
 }
-.searchterm:focus{
-  color: #00B4CC;
+
+input#search-bar-city {
+	float: right;
+	margin: 0 auto;
+	width: 100%;
+	height: 45px;
+	padding: 0 20px;
+	font-size: 1rem;
+	border: 1px solid #AE5D5D;
+	outline: none;
+	border-radius: 8px;
 }
-.searchbutton {
-  width: 40px;
-  height: 36px;
-  border: 1px solid #00B4CC;
-  background: #00B4CC;
-  text-align: center;
-  color: #fff;
-  border-radius: 0 5px 5px 0;
-  cursor: pointer;
-  font-size: 20px;
+
+.search-icon-city {
+	position: relative;
+	float: right;
+	width: 65px;
+	height: 65px;
+	top: -55px;
+	right: -52px;
+}
+
+#city_search {
+	float: right;
+}
+
+#restaurant_search {
+	float: left;
+}
+
+.selection-choices {
+	display: block;
+	margin: 10px auto;
+    width: 105%;
+    border-radius: 8px;
+}
+
+.selection-choices select {
+	margin: 10px auto;
+	padding: 8px 8px;
+    width: 130%;
+    border-radius: 8px;
+}
+
+.selection-choices select:focus {
+    outline: none;
 }
