@@ -1,0 +1,17 @@
+.container {
+	position: relative;
+	text-align: center;
+	width: 100%;
+	height: 100%;
+}
+
+.centered {
+	position: absolute;
+	top: 30%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+.background_img {
+	float: center;
+  	filter: saturate(80%);
+}
