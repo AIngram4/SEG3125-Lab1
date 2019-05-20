@@ -1,0 +1,18 @@
+.container {
+    top: 80px;
+    margin-bottom: 80px;
+    position: relative;
+    background-color: white;
+    width: 700px;
+    padding: 40px 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2), 0 3px 15px 0 rgba(0,0,0,0.19);
+}
+
+.menu_title {
+    position: relative;
+    top: -20px;
+    color: #2C2C2C;
+    text-align: center;
+}
