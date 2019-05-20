@@ -1,9 +1,13 @@
 body {
 	background-image: url(../images/home_background.png);
 	background-repeat: no-repeat;
-	background-position: center;
+	background-position: top;
 	background-color: #666666;
-	background-size: 100% 100%;
+	background-size: cover;
+	min-height: 100%;
+	min-width: 100%;
+	top: 0;
+	left: 0;
 }
 
 .welcome_header {
@@ -12,76 +16,82 @@ body {
 }
 
 .search-containers{
-	width: 40%;
+	width: 300px;
 	display: block;
 	margin: 0 auto;
 
 }
 
-input#search-bar-restaurant {\
-	float: left;
-	margin: 0 auto;
-	width: 100%;
-	height: 45px;
-	padding: 0 20px;
-	font-size: 1rem;
-	border: 1px solid #AE5D5D;
-	outline: none;
-	border-radius: 8px;
- }
-
-.search-icon-restaurant {
+.parent {
+	top: 80px;
+	margin-bottom: 80px;
 	position: relative;
-	float: right;
-	width: 65px;
-	height: 65px;
-	top: -55px;
-	right: -52px;
+	background-color: white;
+	width: 700px;
+	padding: 40px 20px;
+	left: 50%;
+	transform: translateX(-50%);
 }
 
-input#search-bar-city {
-	float: right;
-	margin: 0 auto;
+input[type=text], select {
+	border-radius: 12px;
+	border: 1px solid #ccc;
+	padding: 12px 10px;
+	margin: 5px 0 15px 0;
 	width: 100%;
-	height: 45px;
-	padding: 0 20px;
-	font-size: 1rem;
-	border: 1px solid #AE5D5D;
-	outline: none;
-	border-radius: 8px;
-}
-
-.search-icon-city {
-	position: relative;
-	float: right;
-	width: 65px;
-	height: 65px;
-	top: -55px;
-	right: -52px;
-}
-
-#city_search {
-	float: right;
-}
-
-#restaurant_search {
-	float: left;
-}
-
-.selection-choices {
-	display: block;
-	margin: 10px auto;
-    width: 105%;
-    border-radius: 8px;
-}
-
-.selection-choices select {
-	margin: 10px auto;
-	padding: 8px 8px;
-    width: 130%;
-    border-radius: 8px;
+	box-sizing: border-box;
+	font-size: 16px;
+	text-align: center;
 }
 
 .selection-choices select:focus {
     outline: none;
+}
+
+.dropbtn {
+	background-color: white;
+	color: #2c2c2c;
+	padding: 12px 10px;
+	border-radius: 8px;
+	width: 100%;
+	font-size: 16px;
+	border: none;
+	margin: 5px 0 0 0;
+}
+
+.dropdown {
+	display: inline-block;
+	width: 100%;
+}
+
+.dropdown-content {
+	display: none;
+	background-color: #f1f1f1;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	border-radius: 12px;
+}
+
+.dropdown-content a {
+	color: black;
+	padding: 12px 10px;
+	text-decoration: none;
+	display: block;
+	border-radius: 12px;
+}
+
+.dropdown-content a:hover {background-color: #aaaaaa}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #aaaaaa;}
+
+h1 {
+	position: relative;
+	color: white;
+	top: 20px;
+	font-size: 80px;
+}
+
+input:focus, button {
+	outline: 0;
 }

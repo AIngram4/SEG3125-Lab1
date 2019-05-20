@@ -19,7 +19,7 @@
 	position: relative;
 }
 
-.restaurant_review, .restaurant_name, .restaurant_address, .restaurant_style {
+.restaurant_review, .restaurant_name, .restaurant_address, .restaurant_style, .restaurant_hours {
 	position: absolute;
 	line-height: 100px;
 	font-size: 16px;
@@ -29,6 +29,13 @@
 	position: absolute;
 	top: 50%;
 	transform: translateY(-50%);
+}
+
+.restaurant_hours {
+	font-size: 12px;
+	top: 5px;
+	left: 120px;
+	color: #aaaaaa;
 }
 
 .restaurant_star {
@@ -46,6 +53,7 @@
 
 .restaurant_name {
 	left: 120px;
+	top: -10px;
 }
 
 .restaurant_address {
@@ -53,6 +61,13 @@
 	top: 20px;
 	color: #aaaaaa;
 	font-size: 12px;
+}
+
+.restaurant_title {
+	position: relative;
+	text-align: center;
+	top: 30px;
+	margin-bottom: 20px;
 }
 
 .right {

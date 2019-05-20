@@ -8,30 +8,27 @@
 		<ul>
 			<li><a class="shopping_cart" href="shopping_cart.html"><img src="images/cart.png" height="35"></a></li>
 			<li><a href="restaurants_list.html">Restaurants</a></li>
-			<li><a class="company_bar" href="index.html"><img class="logo_uo" src="images/uottawa_logo.png" height="20"></a></li>
+			<li><a class="company_bar" href="index.html"><img src="images/uottawa_logo.png" height="35"></a></li>
 		</ul>
-	<div class="welcome_header">
-		<h1>Welcome to fuck</h1>
-	</div>
-	<form class="search-containers">
-		<div id="parent">
-			<div id="restaurant_search">
-				<input type="text" id="search-bar-restaurant" placeholder="Search for Restaurants">
-				<a href="#"><img class="search-icon-restaurant" src="images/search_icon.png"></a>
-			</div>
-		<div id="city_search">
-			<input type="text" id="search-bar-city" placeholder="Search for City">
-			<a href="#"><img class="search-icon-city" src="images/search_icon.png"></a>
+		<div class="welcome_header">
+			<h1><i>Order It!</i></h1>
 		</div>
-	</form>
-	<div class="selection-choices" style="width:200px;">
-		<select>
-			<option value="0">What meal will you be having today?</option>
-			<option value="1">Breakfast</option>
-			<option value="2">Lunch</option>
-			<option value="3">Dinner</option>
-			<option value="4">Other</option>
-		</select>
-	</div>
+		<form class="search-containers">
+			<div id="parent">
+				<input type="text" id="search-bar-restaurant" placeholder="Search for Restaurants">
+			</div>
+			<div id="city_search">
+				<input type="text" id="search-bar-city" placeholder="Search for City">
+			</div>
+			<div class="dropdown">
+				<button class="dropbtn">Search by meal type</button>
+				<div class="dropdown-content">
+					<a href="#">Breakfast</a>
+					<a href="#">Lunch</a>
+					<a href="#">Dinner</a>
+					<a href="#">Other</a>
+				</div>
+			</div>
+		</form>
 	</body>
 </html>

@@ -24,6 +24,10 @@
     font-weight: bold;
 }
 
+.total_cost {
+    margin-bottom: 15px;
+}
+
 input[type=text], select {
     border-radius: 4px;
     border: 1px solid #ccc;
