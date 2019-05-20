@@ -11,7 +11,32 @@
 			<li><a class="company_bar" href="index.html">Company Name</a></li>
 		</ul>
 		<div class="container">
-
+			<div class="checkout_title">
+				<h3>Checkout</h3>
+			</div>
+			<div class="address_container">
+				<form class="address_form">
+					<label for="fname_input">First Name</label>
+					<input type="text" name="first_name" id="fname_input" placeholder="Your name.." required>
+					<label for="lname_input">Last Name</label>
+					<input type="text" name="last_name" id="lname_input" placeholder="Your last name.." required>
+					<label for="address_input">Address</label>
+					<input type="text" name="address" id="address_input" placeholder="Your address.." required>
+					<label for="unit_input">Unit</label>
+					<input type="text" name="unit" id="unit_input" placeholder="Your unit.. (Optional)" required>
+					<label for="city_input">City</label>
+					<input type="text" name="city" id="city_input" placeholder="Your city.." required>
+					<label for="postal_input">Postal Code</label>
+					<input type="text" name="postal" id="postal_input" placeholder="Your postal code.." required>
+					<label for="payment_method"></label>
+					<select id="payment_method" name="payment_method">
+						<option value="debit">Debit</option>
+						<option value="credit">Credit</option>
+						<option value="cash">Cash</option>
+					</select>
+					<input type="submit" value="Order">
+				</form>
+			</div>
 		</div>
 	</body>
 </html>

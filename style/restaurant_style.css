@@ -1,6 +1,6 @@
 .buttons {
 	position: relative;
-	width: 600px;
+	width: 700px;
 	height: auto;
 	top: 40px;
 	left: 50%;
@@ -9,7 +9,7 @@
 }
 
 .restaurant_button {
-	margin-bottom: 15px;
+	margin-bottom: 10px;
 	background-color: white;
 	border-width: 0px;
 	height: 100px;
@@ -98,14 +98,14 @@
 }
 
 .restaurant_price {
-	right: 196px;
+	right: 247px;
 	top: 20px;
 	color: #aaaaaa;
 	font-size: 12px;
 }
 
 .restaurant_style {
-	right: 200px;
+	right: 250px;
 	font-size: 16px;
 }
 
