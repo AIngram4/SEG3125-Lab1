@@ -77,3 +77,33 @@
 .checkout_button:focus {
     outline: 0;
 }
+
+.item:hover .item_price {
+    transform: translateX(-20px);
+}
+
+.item:hover .item_qty {
+    transform: translateX(-20px);
+}
+
+.item_qty, .item_price {
+    transition: transform 0.3s;
+}
+
+#item_delete_button {
+    float: right;
+    color: darkred;
+    font-size: 22px;
+    background: none;
+    border: none;
+    display: none;
+    cursor: pointer;
+    line-height: 80px;
+}
+
+.item:hover #item_delete_button {
+    display: block;
+}
+
+#item_delete_button:focus { outline: none; }
+#item_delete_button:active { transform: translateY(2px); }

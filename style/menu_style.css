@@ -19,40 +19,19 @@
 	position: relative;
 }
 
-.menu_review, .menu_name, .menu_address, .menu_style {
+.item_price, .menu_name {
 	position: absolute;
 	line-height: 100px;
 	font-size: 16px;
 }
 
-.menu_img, .menu_star {
-	position: absolute;
-	top: 50%;
-	transform: translateY(-50%);
-}
-
-.menu_star {
-	right: 60px;
-}
-
-.menu_review {
-	right: 30px;
+.item_price {
+	right: 25px;
 	font-weight: bold;
 }
 
-.menu_img {
-	left: 15px;
-}
-
 .menu_name {
-	left: 120px;
-}
-
-.menu_address {
-	left: 120px;
-	top: 20px;
-	color: #aaaaaa;
-	font-size: 12px;
+	left: 50px;
 }
 
 .right {
@@ -95,23 +74,6 @@
 	border-width: 1px;
 	width: 1px;
 	height: 100px;
-}
-
-.menu_price {
-	right: 196px;
-	top: 20px;
-	color: #aaaaaa;
-	font-size: 12px;
-}
-
-.menu_style {
-	right: 200px;
-	font-size: 16px;
-}
-
-.menu_style, .menu_price {
-	position: absolute;
-	line-height: 100px;.
 }
 
 button:focus {

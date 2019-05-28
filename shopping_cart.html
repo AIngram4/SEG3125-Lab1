@@ -3,6 +3,10 @@
 	<head>
 		<link rel="stylesheet" type="text/css" href="style/global_style.css">
 		<link rel="stylesheet" type="text/css" href="style/shopping_style.css">
+		<link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+		<script type="text/javascript" src="scripts.js"></script>
+		<title>Cart</title>
 	</head>
 	<body>
 		<ul>
@@ -12,26 +16,22 @@
 		</ul>
 		<div class="container">
 			<h3 class="shopping_title">Cart</h3>
-			<div class="item">
-				<div class="item_name">Food Item Name</div>
-				<div class="item_price">$4.99</div>
-				<div class="item_qty">Qty: 4</div>
-			</div>
-			<div class="item">
-				<div class="item_name">Food Item Name</div>
-				<div class="item_price">$8.99</div>
-				<div class="item_qty">Qty: 2</div>
-			</div>
-			<div class="item">
-				<div class="item_name">Food Item Name</div>
-				<div class="item_price">$1.99</div>
-				<div class="item_qty">Qty: 1</div>
+			<div class="items">
+				<!--
+                <div class="item" id=""%ITEM_ID%">
+                    <div class="item_name">%ITEM_NAME%</div>
+                    <button id="item_delete_button"><i class="ion-ios-close-outline"></i></button>
+                    <div class="item_price">$%ITEM_PRICE%</div>
+                    <div class="item_qty">Qty: %ITEM_QTY%</div>
+                </div>
+                -->
 			</div>
 			<div class="horizontal_line"></div>
-			<div class="total_cost">Total: $39.33</div>
+			<div class="total_cost">Total: $0</div>
 			<button class="checkout_button" onclick='window.location.href = "checkout.html"'>
 				<div>Checkout</div>
 			</button>
 		</div>
 	</body>
+	<script type="text/javascript" src="scripts.js"></script>
 </html>
