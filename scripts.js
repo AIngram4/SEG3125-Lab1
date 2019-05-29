@@ -1,5 +1,7 @@
 var cartController = (function()
 {
+    var numMenuItems = 3;
+
     /* Private variables */
     var foodItem = function(id, name, price) {
         this.id = id;
@@ -25,9 +27,11 @@ var cartController = (function()
             for (var i = 0; i < numMenuItems; i++)
             {
                 var item = document.getElementById("menu_item_" + (i + 1));
-                var itemObj = new foodItem(i, item.querySelector(".menu_name").innerHTML, parseFloat(item.querySelector(".item_price").innerHTML.replace("$", "")));
-                console.log(i);
-                cart.items[i] = itemObj;
+                if (item != null)
+                {
+                    var itemObj = new foodItem(i, item.querySelector(".menu_name").innerHTML, parseFloat(item.querySelector(".item_price").innerHTML.replace("$", "")));
+                    cart.items[i] = itemObj;
+                }
             }
         }
     };
@@ -49,7 +53,6 @@ var cartController = (function()
                 elem.querySelector(".item_qty").innerHTML = "Qty: " + cart.items[id].qty;
             }
             localStorage.setItem('cart', JSON.stringify(cart));
-            updateTotalCost();
         }
     };
 
@@ -67,11 +70,17 @@ var cartController = (function()
         return cart;
     };
 
+    var getTotalCost = function()
+    {
+        return cart.total;
+    }
+
     return {
         removeItem: removeItem,
         addItem: addItem,
         numItems: numItems,
         getCart: getCart,
+        getTotalCost: getTotalCost,
         init: init
     };
 
@@ -81,13 +90,13 @@ var menuController = (function()
 {
     var numMenuItems = 3;
 
-    var init = function()
+    var init = function(addItemCallback)
     {
         for (var i = 0; i < numMenuItems; i++)
         {
             (function() {
                 var id = i;
-                document.getElementById("menu_item_" + (id + 1)).addEventListener("click", function(){addItem(id)});
+                document.getElementById("menu_item_" + (id + 1)).addEventListener("click", function(){addItemCallback(id)});
             }());
         }
     };
@@ -126,57 +135,50 @@ var UIController = (function()
         "\t<button id=\"item_delete_button\"><i class=\"ion-ios-close-outline\"></i></button>\n" +
         "\t<div class=\"item_price\">$%ITEM_PRICE%</div>\n" +
         "\t<div class=\"item_qty\">Qty: %ITEM_QTY%</div>\n" +
-        "</div>"
+        "</div>";
     var newHTML;
 
-
     /* Public functions */
-    var init = function()
+    var updateTotalCost = function(total)
     {
-        /* Initiate something here */
+        document.querySelector(".total_cost").innerHTML = "Total: $" + parseFloat(Math.round(parseFloat(total) * 100) / 100).toFixed(2);
     };
 
-    var updateTotalCost = function()
-    {
-        document.querySelector(".total_cost").innerHTML = "Total: $" + parseFloat(Math.round(cart.total * 100) / 100).toFixed(2);
-    };
-
-    var addNewItem = function(item)
+    var addNewItem = function(item, removeItemCallback)
     {
         if (item.qty > 0)
         {
-            newHTML = itemHTML.replace("%ITEM_ID%", ("item_" + item.id));
+            newHTML = itemHTML.replace("%ITEM_ID%", ("item_" + item.id).toString());
             newHTML = newHTML.replace("%ITEM_NAME%", item.name);
             newHTML = newHTML.replace("%ITEM_PRICE%", item.price);
-            newHTML = newHTML.replace("%ITEM_QTY%", item.qty);
+            newHTML = newHTML.replace("%ITEM_QTY%", item.qty.toString());
 
             document.querySelector(".items").insertAdjacentHTML("beforeend", newHTML);
 
             var elem = document.getElementById("item_" + item.id).querySelector("#item_delete_button");
-            elem.addEventListener("click", function(){removeItem(item.id)});
+            elem.addEventListener("click", function(){removeItemCallback(item.id)});
         }
     };
 
     return {
-        updateTotalCost: updateTotalCost,
         addNewItem: addNewItem,
-        init: init
+        updateTotalCost: updateTotalCost,
     };
 }());
 
 var controller = (function(cartCtrl, menuCtrl, restaurantCtrl, UICtrl){
-
-    var cart = cartCtrl.getCart();
 
     var init = function()
     {
         if (document.title === "Cart")
         {
             cartCtrl.init();
+            var cart = cartCtrl.getCart();
             for(var i = 0; i < cartCtrl.numItems(); i++)
             {
-                UICtrl.addNewItem(cart.items[i]);
+                UICtrl.addNewItem(cart.items[i], removeItem);
             }
+            UICtrl.updateTotalCost(cartCtrl.getTotalCost());
         }
         else if (document.title === "Restaurant List")
         {
@@ -184,8 +186,16 @@ var controller = (function(cartCtrl, menuCtrl, restaurantCtrl, UICtrl){
         }
         else if (document.title === "Menu")
         {
-            menuCtrl.init();
+            cartCtrl.init();
+            menuCtrl.init(cartCtrl.addItem);
         }
+    };
+
+    /* Private function */
+    function removeItem(id)
+    {
+        cartCtrl.removeItem(id);
+        UICtrl.updateTotalCost(cartCtrl.getTotalCost());
     };
 
     return {
