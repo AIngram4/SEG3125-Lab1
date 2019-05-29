@@ -166,7 +166,12 @@ var UIController = (function()
     };
 }());
 
-var controller = (function(cartCtrl, menuCtrl, restaurantCtrl, UICtrl){
+var checkoutController = (function()
+{
+
+}());
+
+var controller = (function(cartCtrl, menuCtrl, restaurantCtrl, checkoutCtrl, UICtrl){
 
     var init = function()
     {
@@ -189,6 +194,11 @@ var controller = (function(cartCtrl, menuCtrl, restaurantCtrl, UICtrl){
             cartCtrl.init();
             menuCtrl.init(cartCtrl.addItem);
         }
+        else if (document.title === "Checkout")
+        {
+            cartCtrl.init();
+            UIController.updateTotalCost(cartCtrl.getTotalCost());
+        }
     };
 
     /* Private function */
@@ -202,7 +212,7 @@ var controller = (function(cartCtrl, menuCtrl, restaurantCtrl, UICtrl){
         init: init
     };
 
-}(cartController, menuController, restaurantController, UIController));
+}(cartController, menuController, restaurantController, checkoutController, UIController));
 
 $(document).ready(function() {
     controller.init();
