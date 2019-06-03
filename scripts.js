@@ -168,7 +168,24 @@ var UIController = (function()
 
 var checkoutController = (function()
 {
+    var init = function()
+    {
+        document.getElementById("payment_method").addEventListener("change", showCCInfo);
+    }
 
+    var showCCInfo = function()
+    {
+        var div = document.querySelector(".creditCardForm");
+        var e = document.getElementById("payment_method");
+        if (e.options[e.selectedIndex].value === "credit")
+        {
+            div.style.display = "block";
+        }
+    };
+
+    return {
+      init: init
+    };
 }());
 
 var controller = (function(cartCtrl, menuCtrl, restaurantCtrl, checkoutCtrl, UICtrl){
@@ -197,6 +214,7 @@ var controller = (function(cartCtrl, menuCtrl, restaurantCtrl, checkoutCtrl, UIC
         else if (document.title === "Checkout")
         {
             cartCtrl.init();
+            checkoutController.init();
             UIController.updateTotalCost(cartCtrl.getTotalCost());
         }
     };
@@ -206,7 +224,7 @@ var controller = (function(cartCtrl, menuCtrl, restaurantCtrl, checkoutCtrl, UIC
     {
         cartCtrl.removeItem(id);
         UICtrl.updateTotalCost(cartCtrl.getTotalCost());
-    };
+    }
 
     return {
         init: init
