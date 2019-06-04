@@ -13,12 +13,13 @@ var cartController = (function()
     var cart = {
         items: [],
         total: 0,
+        totalItems: 0
     };
 
     var init = function()
     {
         var storedCart = JSON.parse(localStorage.getItem('cart'));
-        if (storedCart != undefined)
+        if (storedCart !== null)
         {
             cart = storedCart;
         }
@@ -40,11 +41,12 @@ var cartController = (function()
     var removeItem = function(id) {
         if (cart.items[id].qty > 0)
         {
+            cart.totalItems--;
             cart.items[id].qty--;
             cart.total -= cart.items[id].price;
 
             var elem = document.getElementById("item_" + id);
-            if (cart.items[id].qty == 0)
+            if (cart.items[id].qty === 0)
             {
                 elem.parentNode.removeChild(elem);
             }
@@ -57,6 +59,7 @@ var cartController = (function()
     };
 
     var addItem = function(id) {
+        cart.totalItems++;
         cart.items[id].qty++;
         cart.total += cart.items[id].price;
         localStorage.setItem('cart', JSON.stringify(cart));
@@ -73,7 +76,12 @@ var cartController = (function()
     var getTotalCost = function()
     {
         return cart.total;
-    }
+    };
+
+    var getCartSize = function()
+    {
+        return cart.totalItems;
+    };
 
     return {
         removeItem: removeItem,
@@ -81,6 +89,7 @@ var cartController = (function()
         numItems: numItems,
         getCart: getCart,
         getTotalCost: getTotalCost,
+        getCartSize: getCartSize,
         init: init
     };
 
@@ -96,13 +105,22 @@ var menuController = (function()
         {
             (function() {
                 var id = i;
-                document.getElementById("menu_item_" + (id + 1)).addEventListener("click", function(){addItemCallback(id)});
+                document.getElementById("menu_item_" + (id + 1)).querySelector("button").addEventListener("click", function(){addItemCallback(id)});
             }());
         }
     };
 
+    var addItem = function(id)
+    {
+        var html = "<div class=\"added_text animated_text\">Added to cart</div>";
+        var e = document.getElementById("menu_item_" + (id + 1));
+        e.insertAdjacentHTML("beforeend", html);
+        setTimeout(function(){e.querySelector(".added_text").remove();}, 900);
+    };
+
     return {
-        init: init
+        init: init,
+        addItem: addItem
     };
 }());
 
@@ -139,11 +157,6 @@ var UIController = (function()
     var newHTML;
 
     /* Public functions */
-    var updateTotalCost = function(total)
-    {
-        document.querySelector(".total_cost").innerHTML = "Total: $" + parseFloat(Math.round(parseFloat(total) * 100) / 100).toFixed(2);
-    };
-
     var addNewItem = function(item, removeItemCallback)
     {
         if (item.qty > 0)
@@ -160,9 +173,29 @@ var UIController = (function()
         }
     };
 
+    var updateCartSize = function(size)
+    {
+        var e = document.getElementById("cart_size");
+        if (size > 0)
+        {
+            if (e !== null)
+            {
+                e.innerHTML = size;
+            }
+            else
+            {
+                document.querySelector(".shopping_cart").insertAdjacentHTML("beforeend", "<p id=\"cart_size\">" + size + "</p>");
+            }
+        }
+        else
+        {
+            e.remove();
+        }
+    };
+
     return {
         addNewItem: addNewItem,
-        updateTotalCost: updateTotalCost,
+        updateCartSize: updateCartSize
     };
 }());
 
@@ -171,7 +204,7 @@ var checkoutController = (function()
     var init = function()
     {
         document.getElementById("payment_method").addEventListener("change", showCCInfo);
-    }
+    };
 
     var showCCInfo = function()
     {
@@ -181,26 +214,39 @@ var checkoutController = (function()
         {
             div.style.display = "block";
         }
+        else
+        {
+            div.style.display = "none";
+        }
+    };
+
+    var updateTotalCost = function(total)
+    {
+        document.querySelector(".total_cost").innerHTML = "Total: $" + parseFloat(Math.round(parseFloat(total) * 100) / 100).toFixed(2);
     };
 
     return {
-      init: init
+        init: init,
+        showCCInfo: showCCInfo,
+        updateTotalCost: updateTotalCost
     };
+
 }());
 
 var controller = (function(cartCtrl, menuCtrl, restaurantCtrl, checkoutCtrl, UICtrl){
 
     var init = function()
     {
+        cartCtrl.init();
+        UICtrl.updateCartSize(cartCtrl.getCartSize());
         if (document.title === "Cart")
         {
-            cartCtrl.init();
             var cart = cartCtrl.getCart();
             for(var i = 0; i < cartCtrl.numItems(); i++)
             {
                 UICtrl.addNewItem(cart.items[i], removeItem);
             }
-            UICtrl.updateTotalCost(cartCtrl.getTotalCost());
+            checkoutCtrl.updateTotalCost(cartCtrl.getTotalCost());
         }
         else if (document.title === "Restaurant List")
         {
@@ -208,14 +254,12 @@ var controller = (function(cartCtrl, menuCtrl, restaurantCtrl, checkoutCtrl, UIC
         }
         else if (document.title === "Menu")
         {
-            cartCtrl.init();
-            menuCtrl.init(cartCtrl.addItem);
+            menuCtrl.init(addItem);
         }
         else if (document.title === "Checkout")
         {
-            cartCtrl.init();
             checkoutController.init();
-            UIController.updateTotalCost(cartCtrl.getTotalCost());
+            checkoutCtrl.updateTotalCost(cartCtrl.getTotalCost());
         }
     };
 
@@ -223,7 +267,15 @@ var controller = (function(cartCtrl, menuCtrl, restaurantCtrl, checkoutCtrl, UIC
     function removeItem(id)
     {
         cartCtrl.removeItem(id);
-        UICtrl.updateTotalCost(cartCtrl.getTotalCost());
+        checkoutCtrl.updateTotalCost(cartCtrl.getTotalCost());
+        UICtrl.updateCartSize(cartCtrl.getCartSize());
+    }
+
+    function addItem(id)
+    {
+        cartCtrl.addItem(id);
+        menuCtrl.addItem(id);
+        UICtrl.updateCartSize(cartCtrl.getCartSize());
     }
 
     return {

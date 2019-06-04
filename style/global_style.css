@@ -52,4 +52,13 @@ li a:hover {
 .shopping_cart, .company_bar {
     padding: 5px 7px;
     height: 46px;
+    padding-right: 40px;
+}
+
+.shopping_cart #cart_size {
+    position: absolute;
+    display: inline-block;
+    top: 0;
+    right: 10px;
+    line-height: 46px;
 }
