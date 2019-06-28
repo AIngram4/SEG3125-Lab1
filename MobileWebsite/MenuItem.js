@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Text, AppRegistry, View, StyleSheet, TouchableOpacity} from 'react-native';
 
-export default class AddButton extends Component {
+export default class MenuItem extends Component {
 
     render(){
         return(
@@ -9,11 +9,11 @@ export default class AddButton extends Component {
                 <View>
                     <Text style={styles.text}>Item {this.props.itemNumber}</Text>
                 </View>
-                <View>
-                    <Text style={styles.textPrice}>Meep</Text>
+                <View style={styles.priceContainer}>
+                    <Text style={styles.textPrice}>${this.props.itemPrice}</Text>
                 </View>
                 <View style={styles.buttonView}>
-                    <TouchableOpacity style={styles.button} onPress={() => this.props.onPress(this.props.itemNumber)}>
+                    <TouchableOpacity style={styles.button} onPress={() => this.props.onPress(this.props.itemNumber, this.props.itemPrice)}>
                         <Text style={styles.addText}>Add</Text>
                     </TouchableOpacity>
                 </View>
@@ -61,9 +61,12 @@ const styles = StyleSheet.create({
     textPrice: {
         textAlign: 'center',
         color: 'black',
-        fontSize: 20,
-        marginLeft: 40,
+        fontSize: 15,
     },
+
+    priceContainer: {
+       marginLeft: 120,
+    }
 });
 
-AppRegistry.registerComponent('AddButton', () => AddButton);
+AppRegistry.registerComponent('MenuItem', () => MenuItem);

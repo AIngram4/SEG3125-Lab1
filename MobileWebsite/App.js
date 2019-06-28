@@ -7,9 +7,9 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, ScrollView} from 'react-native';
+import {Platform, StyleSheet, Text, View, ScrollView, AppRegistry} from 'react-native';
 
-import MenuScreen from './components/menu/MenuScreen';
+import MenuScreen from './MenuScreen';
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -18,9 +18,11 @@ export default class App extends Component<Props> {
     return (
         <MenuScreen/>
     );
-
   }
 }
 
 const styles = StyleSheet.create({
+
 });
+
+AppRegistry.registerComponent('App', () => App);
