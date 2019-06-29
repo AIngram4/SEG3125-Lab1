@@ -6,23 +6,44 @@
  * @flow
  */
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, ScrollView, AppRegistry} from 'react-native';
+// import React, {Component} from 'react';
+// import {StyleSheet, AppRegistry, Text, View, Button} from 'react-native';
+//
+// import MenuScreen from './components/menu/MenuScreen';
+// import RestaurantScreen from './components/restaurant/RestaurantScreen';
+//
+// type Props = {};
+// export default class App extends Component<Props> {
+//
+//   render() {
+//       const {navigate} = this.props.navigation;
+//       return (
+//           <Button title="MEEP" onPress={() => navigate('Restaurants')}/>
+//           );
+//   }
+// }
+//
+// const styles = StyleSheet.create({
+//
+// });
+//
+// AppRegistry.registerComponent('App', () => App);
 
-import MenuScreen from './MenuScreen';
+import React from 'react';
+import { createStackNavigator, createAppContainer } from 'react-navigation';
 
-type Props = {};
-export default class App extends Component<Props> {
+import MenuScreen from './components/menu/MenuScreen';
+import RestaurantScreen from './components/restaurant/RestaurantScreen';
 
-  render() {
-    return (
-        <MenuScreen/>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-
+const RootStack = createStackNavigator({
+    Restaurants: {
+        screen: RestaurantScreen,
+    },
+    Menu: {
+        screen: MenuScreen,
+    },
 });
 
-AppRegistry.registerComponent('App', () => App);
+const App = createAppContainer(RootStack);
+
+export default App;

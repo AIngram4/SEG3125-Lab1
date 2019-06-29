@@ -13,7 +13,7 @@ export default class MenuItem extends Component {
                     <Text style={styles.textPrice}>${this.props.itemPrice}</Text>
                 </View>
                 <View style={styles.buttonView}>
-                    <TouchableOpacity style={styles.button} onPress={() => this.props.onPress(this.props.itemNumber, this.props.itemPrice)}>
+                    <TouchableOpacity style={styles.button} onPress={() => this.props.onPress(this.props.restaurantID, this.props.itemPrice)}>
                         <Text style={styles.addText}>Add</Text>
                     </TouchableOpacity>
                 </View>

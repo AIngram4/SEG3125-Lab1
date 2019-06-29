@@ -9,10 +9,13 @@ export default class MenuScreen extends Component {
         console.log("Add item " + itemNumber + " at " + itemPrice);
     };
 
+    static navigationOptions = {
+        title: 'Menu',
+    };
+
     render() {
         return (
             <ScrollView style={styles.container}>
-                <Text style={styles.menuTitle}>Menu</Text>
                 <MenuItem itemNumber={1} itemPrice={4.99} onPress={this.addMenuItem}/>
                 <MenuItem itemNumber={2} itemPrice={4.99} onPress={this.addMenuItem}/>
                 <MenuItem itemNumber={3} itemPrice={4.99} onPress={this.addMenuItem}/>
