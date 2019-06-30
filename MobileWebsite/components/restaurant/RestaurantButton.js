@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, ScrollView, AppRegistry, TouchableOpacity, Image} from 'react-native';
+import {StyleSheet, Text, View, AppRegistry, TouchableOpacity, Image} from 'react-native';
 
 export default class RestaurantButton extends Component {
 
