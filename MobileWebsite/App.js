@@ -34,13 +34,25 @@ import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 import MenuScreen from './components/menu/MenuScreen';
 import RestaurantScreen from './components/restaurant/RestaurantScreen';
+import CartScreen from "./components/cart/CartScreen";
+import CheckoutScreen from "./components/checkout/CheckoutScreen";
+import HomeScreen from "./components/home/HomeScreen";
 
 const RootStack = createStackNavigator({
     Restaurants: {
         screen: RestaurantScreen,
     },
+    Home: {
+        screen: HomeScreen,
+    },
+    Cart: {
+        screen: CartScreen,
+    },
     Menu: {
         screen: MenuScreen,
+    },
+    Checkout: {
+        screen: CheckoutScreen,
     },
 });
 

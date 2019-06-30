@@ -14,13 +14,13 @@ export default class NavBar extends Component {
     render() {
         return (
             <View style={styles.navBar}>
-                <TouchableOpacity style={styles.homeNavButton} onPress={() => this.props.navigation.navigate('Restaurants')}>
+                <TouchableOpacity style={styles.homeNavButton} onPress={() => this.props.navigation.navigate('Home')}>
                     <Text style={styles.navBarText}>Home</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.restaurantNavButton} onPress={() => this.props.navigation.navigate('Restaurants')}>
                     <Text style={styles.navBarText}>Restaurants</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.cartNavButton} onPress={() => this.props.navigation.navigate('Restaurants')}>
+                <TouchableOpacity style={styles.cartNavButton} onPress={() => this.props.navigation.navigate('Cart')}>
                     <Text style={styles.navBarText}>Cart</Text>
                 </TouchableOpacity>
             </View>
