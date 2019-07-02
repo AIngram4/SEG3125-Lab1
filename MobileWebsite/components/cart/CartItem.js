@@ -9,7 +9,7 @@ export default class CartItem extends Component {
                 <Text style={styles.itemText}>Menu Item {this.props.itemNumber}</Text>
                 <Text style={styles.qtyText}>Qty: {this.props.itemQty}</Text>
                 <Text style={styles.costText}>${this.props.itemCost}</Text>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => this.props.onPress(this.props.itemNumber)}>
                     <Image source={require('../../images/x-button.png')} style={styles.xButton}/>
                 </TouchableOpacity>
             </View>

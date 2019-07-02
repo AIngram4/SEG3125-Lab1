@@ -7,10 +7,6 @@ export default class NavBar extends Component {
         title: 'Restaurants',
     };
 
-    static navigationOptions = {
-        title: 'Restaurants',
-    };
-
     render() {
         return (
             <View style={styles.navBar}>

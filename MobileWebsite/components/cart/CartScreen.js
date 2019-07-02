@@ -1,74 +1,91 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, AppRegistry, ScrollView, TouchableOpacity, Image} from 'react-native';
+import {StyleSheet, Text, View, AppRegistry, ScrollView, TouchableOpacity, AsyncStorage} from 'react-native';
 
 import NavBar from '../navigation/navBar';
 import CartItem from "./CartItem";
 
+var globalCart = {
+    items: [],
+    total: 0,
+    totalItems: 0
+};
+
+var foodItem = function(id, name, price) {
+    this.id = id;
+    this.name = name;
+    this.price = price;
+    this.qty = 0;
+};
+
+var saveData = function() {
+    AsyncStorage.setItem('cart', JSON.stringify(globalCart));
+};
+
+async function getData() {
+    var cart = null;
+    try {
+        let json = await AsyncStorage.getItem('cart');
+        if (json != null)
+            cart = JSON.parse(json);
+
+    } catch(e) {
+
+    }
+    return cart;
+}
+
+getData().then(value => {
+    if (value != null)
+    {
+        globalCart.items = value.items;
+        globalCart.total = value.total;
+        globalCart.totalItems = value.totalItems;
+    }
+    console.log(globalCart);
+});
+
 export default class CartScreen extends Component {
-
-    cart = {
-        items: [],
-        total: 0,
-        totalItems: 0
-    };
-
-    foodItem = function(id, name, price) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.qty = 0;
-    };
-
     static navigationOptions = {
         title: 'Cart',
     };
 
     initializeItems = () => {
-        this.cart.items.push(new this.foodItem(0, "Pizza", 4.99));
-        this.cart.items.push(new this.foodItem(1, "Hamburger", 2.99));
-        this.cart.items.push(new this.foodItem(2, "Hot dog", 1.99));
-
-        this.addItem(0);
-        this.addItem(0);
-        this.addItem(0);
-        this.addItem(1);
-
         var temp = [];
-        for (var i = 0; i < 3; i++)
+        for (var i = 0; i < 8; i++)
         {
-            if (this.cart.items[i].qty > 0)
+            if (globalCart.items[i] != null)
             {
-                if (i === 0)
-                    temp.push((<CartItem key={i} itemStyle={styles.firstItemContainer} itemNumber={this.cart.items[i].id} itemQty={this.cart.items[i].qty} itemCost={this.cart.items[i].price}/>));
-                else
-                    temp.push((<CartItem key={i} itemStyle={styles.itemContainer} itemNumber={this.cart.items[i].id} itemQty={this.cart.items[i].qty} itemCost={this.cart.items[i].price}/>));
+                if (globalCart.items[i].qty > 0)
+                {
+                    if (i === 0)
+                        temp.push((<CartItem key={i} itemStyle={styles.firstItemContainer} itemNumber={globalCart.items[i].id} itemQty={globalCart.items[i].qty} itemCost={globalCart.items[i].price} onPress={this.removeItem}/>));
+                    else
+                        temp.push((<CartItem key={i} itemStyle={styles.itemContainer} itemNumber={globalCart.items[i].id} itemQty={globalCart.items[i].qty} itemCost={globalCart.items[i].price} onPress={this.removeItem}/>));
+                }
             }
         }
         return temp;
     };
 
     removeItem = (id) => {
-        if (this.cart.items[id].qty > 0) {
-            this.cart.totalItems--;
-            this.cart.items[id].qty--;
-            this.cart.total -= this.cart.items[id].price;
+        if (globalCart.items[id-1].qty > 0) {
+            globalCart.totalItems--;
+            globalCart.items[id-1].qty--;
+            globalCart.total -= globalCart.items[id-1].price;
+            saveData();
+            this.forceUpdate();
         }
     };
 
-    addItem = (id) => {
-        this.cart.totalItems++;
-        this.cart.items[id].qty++;
-        this.cart.total += this.cart.items[id].price;
-    };
-
     render() {
+        getData();
         return (
             <View style={styles.container}>
                 <ScrollView style={styles.scrollContainer}>
                     <View style={styles.whiteBack}>
                         { this.initializeItems() }
-                        <Text style={styles.totalText}>Total: ${this.total}</Text>
-                        <TouchableOpacity style={styles.checkoutButton}>
+                        <Text style={styles.totalText}>Total: ${globalCart.total.toFixed(2)}</Text>
+                        <TouchableOpacity style={styles.checkoutButton} onPress={() => this.props.navigation.navigate('Checkout', { onGoBack: () => this.forceUpdate()})}>
                             <Text style={styles.checkoutButtonText}>Checkout</Text>
                         </TouchableOpacity>
                     </View>
