@@ -1,17 +1,14 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, AppRegistry, Text} from 'react-native';
+import {StyleSheet, View, AppRegistry, Text, ScrollView} from 'react-native';
 import t from 'tcomb-form-native';
 
 import NavBar from '../navigation/navBar';
 
-const Form = t.form.Form;
-
-const User = t.struct({
-    firstName,
-    lastName
-})
-
-
+// const Form = t.form.Form;
+// const User = t.struct({
+//     firstName: 'Aidan',
+//     lastName: 'Boase',
+// });
 
 export default class CheckoutScreen extends Component {
 
@@ -26,11 +23,6 @@ export default class CheckoutScreen extends Component {
                     <Text style={styles.paragraph}>
                         nice
                     </Text>
-
-
-
-
-
                 </ScrollView>
                 <NavBar navigation={this.props.navigation}/>
             </View>
@@ -41,7 +33,7 @@ export default class CheckoutScreen extends Component {
 const styles = StyleSheet.create({
     container: {
         justifyContent: 'center',
-        MarginTop: 50,
+        marginTop: 50,
         padding: 20,
         backgroundColor: 'white',
     },
