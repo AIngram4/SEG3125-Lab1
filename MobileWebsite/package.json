@@ -16,7 +16,8 @@
     "react-native-material-dropdown": "^0.11.1",
     "react-native-navigation": "^2.22.1",
     "react-native-vector-icons": "^6.6.0",
-    "react-navigation": "^3.11.0"
+    "react-navigation": "^3.11.0",
+    "tcomb-form-native": "^0.6.20"
   },
   "devDependencies": {
     "@babel/core": "7.4.5",
