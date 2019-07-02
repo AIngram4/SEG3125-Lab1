@@ -47,8 +47,6 @@ getData().then(value => {
     }
 });
 
-var temp = false;
-
 export default class MenuScreen extends Component {
 
     addMenuItem = (itemNumber, itemPrice) => {

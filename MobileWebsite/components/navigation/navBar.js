@@ -69,6 +69,10 @@ const styles = StyleSheet.create({
         paddingLeft: 15,
         backgroundColor: '#2C2C2C'
     },
+    cartText: {
+        fontSize: 15,
+        color: 'white'
+    },
 });
 
 AppRegistry.registerComponent('NavBar', () => NavBar);
