@@ -26,7 +26,9 @@ async function getData() {
     try {
         let json = await AsyncStorage.getItem('cart');
         if (json != null)
+        {
             cart = JSON.parse(json);
+        }
 
     } catch(e) {
 
@@ -40,8 +42,13 @@ getData().then(value => {
         globalCart.items = value.items;
         globalCart.total = value.total;
         globalCart.totalItems = value.totalItems;
+
+        GLOBAL.globalCart = globalCart;
     }
-    console.log(globalCart);
+});
+
+getData().catch(err => {
+    console.log(err);
 });
 
 export default class CartScreen extends Component {
@@ -49,7 +56,19 @@ export default class CartScreen extends Component {
         title: 'Cart',
     };
 
+    componentDidMount(): void {
+        console.log("Meeeeeeeep");
+    }
+
     initializeItems = () => {
+        if (GLOBAL.globalCart != null)
+        {
+            globalCart = GLOBAL.globalCart;
+        }
+        else
+        {
+            getData();
+        }
         var temp = [];
         for (var i = 0; i < 8; i++)
         {
@@ -78,7 +97,6 @@ export default class CartScreen extends Component {
     };
 
     render() {
-        getData();
         return (
             <View style={styles.container}>
                 <ScrollView style={styles.scrollContainer}>
@@ -90,7 +108,6 @@ export default class CartScreen extends Component {
                         </TouchableOpacity>
                     </View>
                 </ScrollView>
-                <NavBar navigation={this.props.navigation}/>
             </View>
         );
     }

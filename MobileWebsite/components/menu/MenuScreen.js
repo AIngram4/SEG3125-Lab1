@@ -20,6 +20,7 @@ var foodItem = function(id, name, price) {
 
 var saveData = function() {
     AsyncStorage.setItem('cart', JSON.stringify(globalCart));
+    GLOBAL.globalCart = globalCart;
 };
 
 async function getData() {
@@ -41,8 +42,9 @@ getData().then(value => {
         globalCart.items = value.items;
         globalCart.total = value.total;
         globalCart.totalItems = value.totalItems;
+
+        GLOBAL.globalCart = globalCart;
     }
-    console.log(globalCart);
 });
 
 var temp = false;

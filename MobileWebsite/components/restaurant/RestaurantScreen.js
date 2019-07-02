@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import {StyleSheet, View, ScrollView, AppRegistry} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 import RestaurantButton from './RestaurantButton';
 import NavBar from '../navigation/navBar';
 
 export default class RestaurantScreen extends Component {
 
-    goToRestaurant = (restaurantID) => {
+    goToRestaurant = () => {
         this.props.navigation.navigate('Menu');
     };
 
