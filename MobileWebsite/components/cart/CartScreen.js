@@ -56,10 +56,6 @@ export default class CartScreen extends Component {
         title: 'Cart',
     };
 
-    componentDidMount(): void {
-        console.log("Meeeeeeeep");
-    }
-
     initializeItems = () => {
         if (GLOBAL.globalCart != null)
         {

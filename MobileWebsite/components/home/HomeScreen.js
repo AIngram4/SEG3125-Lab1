@@ -1,44 +1,42 @@
 import React, {Component} from 'react';
-import {Text, StyleSheet, View, AppRegistry, ScrollView, ImageBackground, TouchableOpacity} from 'react-native';
+import {Text, StyleSheet, View, AppRegistry, ScrollView, ImageBackground, TouchableOpacity, Picker} from 'react-native';
 import {SearchBar} from "react-native-elements";
 import {Dropdown} from 'react-native-material-dropdown';
 
 import NavBar from '../navigation/navBar';
 
 export default class HomeScreen extends Component {
-    state = {
-      search: '',
-    };
 
     state = {
-      searchCity: '',
+        searchCity: '',
+        search: '',
+        selection: 'sbm',
     };
 
     static navigationOptions = {
         title: 'Home',
     };
 
-    updateSearch = search => {
-      this.setState({search});
+    restaurantSearch = () => {
+        if (this.state.search !== '')
+            this.setState({search:''});
+            this.props.navigation.navigate('Restaurants');
     };
 
-    updateSearchCity = searchCity => {
-      this.setState({searchCity});
+    citySearch = () => {
+        if (this.state.searchCity !== '')
+            this.setState({searchCity:''});
+            this.props.navigation.navigate('Restaurants');
+    };
+
+    selectedMeal = () => {
+        this.props.navigation.navigate('Restaurants');
+
     };
 
     render() {
-      const {search} = this.state;
-      const {searchCity} = this.state;
+      const {search,searchCity} = this.state;
 
-      let data = [{
-        value: 'Breakfast',
-      }, {
-        value: 'Lunch',
-      }, {
-        value: 'Dinner',
-      }, {
-        value: 'Other',
-      }];
         return (
             <View style={styles.container}>
               <ScrollView style={styles.scrollContainer}>
@@ -50,7 +48,6 @@ export default class HomeScreen extends Component {
                 round
                 placeholder="Search For Restaurants"
                 placeholderTextColor={'white'}
-                onChangeText={this.updateSearch}
                 value={search}
                 containerStyle={{
                   backgroundColor: 'transparent',
@@ -64,7 +61,6 @@ export default class HomeScreen extends Component {
                 round
                 placeholder="Search for City"
                 placeholderTextColor={'white'}
-                onChangeText={this.updateSearchCity}
                 value={searchCity}
                 containerStyle={{
                   backgroundColor: 'transparent',
@@ -74,15 +70,14 @@ export default class HomeScreen extends Component {
                   marginBottom: 35,
                 }} />
 
-                <Dropdown
-                  baseColor='white'
-                  textColor='white'
-                  label='Select Meal Type'
-                  data={data} />
-
-                <TouchableOpacity style={styles.checkoutButton}>
-                    <Text style={styles.checkoutButtonText}>Confirm</Text>
-                </TouchableOpacity>
+                  <Picker style={styles.picker}
+                          selectedValue='sbm'
+                          onValueChange={(itemValue, itemIndex) => this.selectedMeal()}>
+                      <Picker.Item label="Search by meal!" value="sbm" />
+                      <Picker.Item label="Breakfast" value="br" />
+                      <Picker.Item label="Lunch" value="lu" />
+                      <Picker.Item label="Dinner" value="di" />
+                  </Picker>
 
                 </ImageBackground>
                 </ScrollView>
@@ -121,6 +116,16 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         marginTop: 60,
         backgroundColor: '#2c2c2c',
+    },
+    picker: {
+        height: 50,
+        borderRadius: 5,
+        backgroundColor: '#2c2c2c',
+        color: 'white',
+        borderWidth: 1,
+        marginRight: 10,
+        marginLeft: 10,
+        marginBottom: 10,
     },
 });
 
