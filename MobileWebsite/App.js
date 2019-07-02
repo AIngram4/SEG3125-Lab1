@@ -39,14 +39,14 @@ import CheckoutScreen from "./components/checkout/CheckoutScreen";
 import HomeScreen from "./components/home/HomeScreen";
 
 const RootStack = createStackNavigator({
+    Cart: {
+        screen: CartScreen,
+    },
     Restaurants: {
         screen: RestaurantScreen,
     },
     Home: {
         screen: HomeScreen,
-    },
-    Cart: {
-        screen: CartScreen,
     },
     Menu: {
         screen: MenuScreen,

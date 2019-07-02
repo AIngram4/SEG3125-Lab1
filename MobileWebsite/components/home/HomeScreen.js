@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, View, AppRegistry, ScrollView} from 'react-native';
+import {SearchBar} from "react-native-elements";
 
 import NavBar from '../navigation/navBar';
 
@@ -13,6 +14,7 @@ export default class HomeScreen extends Component {
         return (
             <View style={styles.container}>
                 {/*Use a scroll view to make sure the nav bar gets forced to bottom*/}
+                <SearchBar placeholder="Type here..."/>
                 <NavBar navigation={this.props.navigation}/>
             </View>
         );
