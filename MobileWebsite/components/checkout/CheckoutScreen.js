@@ -1,9 +1,17 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, AppRegistry} from 'react-native';
-import {FormLabel, FormInput, FormValidationMessage} from 'react-native-elements';
-//import CreditCardInput from 'react-credit-card-input';
+import {StyleSheet, View, AppRegistry, Text} from 'react-native';
+import t from 'tcomb-form-native';
 
 import NavBar from '../navigation/navBar';
+
+const Form = t.form.Form;
+
+const User = t.struct({
+    firstName,
+    lastName
+})
+
+
 
 export default class CheckoutScreen extends Component {
 
@@ -14,12 +22,16 @@ export default class CheckoutScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
-              {/*<CreditCardInput*/}
-              {/*  cardNumberInputProps={{ value: cardNumber, onChange: this.handleCardNumberChange }}*/}
-              {/*  cardExpiryInputProps={{ value: expiry, onChange: this.handleCardExpiryChange }}*/}
-              {/*  cardCVCInputProps={{ value: cvc, onChange: this.handleCardCVCChange }}*/}
-              {/*  fieldClassName="input"*/}
-              {/*  />*/}
+                <ScrollView style={styles.scrollContainer}>
+                    <Text style={styles.paragraph}>
+                        nice
+                    </Text>
+
+
+
+
+
+                </ScrollView>
                 <NavBar navigation={this.props.navigation}/>
             </View>
         );
@@ -28,8 +40,19 @@ export default class CheckoutScreen extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        justifyContent: 'center',
+        MarginTop: 50,
+        padding: 20,
+        backgroundColor: 'white',
     },
+    paragraph: {
+        margin: 24,
+        fontSize: 18,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        color: '#34495e',
+
+    }
 });
 
 AppRegistry.registerComponent('CheckoutScreen', () => CheckoutScreen);
